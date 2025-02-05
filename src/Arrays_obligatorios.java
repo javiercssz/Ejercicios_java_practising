@@ -120,35 +120,39 @@ public class Arrays_obligatorios {
      **/
     public static void ejercicio3() {
         int[] arr = {4, 5, 6, 5, 4, 3}; //Array inicial
+        int[] arr_copia = Arrays.copyOf(arr, arr.length); // copia array inicial
         //int [] num_veces_repetido = new int[arr.length * 2]; //array para saber cuantas veces  se ha repetido cada numero
         int i = 0;
         int posicion = 0; // numero que hay en la posicion i del array
         int reseteo_i; //resetea la variable i
+        int restaurar_i_2;
+        int num_sin_repetir_contador = 1; //cuantos numeros hay en total sin contar las repeticiones
         int contador_num = 1; // cuantas veces se repite un numero
+        int contador2 = 0;
+        int recorrer_array_nivel_2_contador = 0; // contador para recorrer el array de nivel dos
         int k = 0; // le suma dos a la posiciones del array num_veces_repetido para seguir metiendole numeros en las siguientes posiciones
-        int restaurar_posicion = 0; //sirve para que la variable posicion vuelva a estar igual que antes cuando es modificada
+       // int restaurar_posicion = 0; //sirve para que la variable posicion vuelva a estar igual que antes cuando es modificada
         boolean se_repite = false; //para saber si un numero en el array ya lo hemos guardo o no.
         boolean duplicado = false; // para saber si un numero esta duplicado en el array.
-        int no_duplicado_contador = 0; // para saber la cantidad de numeros no estan duplicados en el array
         int [] arraydefinitivo = new int[arr.length]; //Array que se va a imprimir al final
         
 //PD:  COMPROBAR LA CANTIDAD DE NUMEROS QUE HAY SIN CONTAR LAS REPETICIONES:
 // LA UNICA MANERA DE HACERLO CON LO QUE HEMOS DADO ES ORDENAR EL ARRAY Y CONTAR LOS CAMBIOS DE NUMERO.
 
-        //este for te dice si un numero esta duplicado o no para conseguir la longitud del array doble
-        // (longitud del array sin contar los duplicados)
-        for (int c = 0; c < arr.length; c++)
+        // Comprueba cuantos numeros hay sin contar las repeticiones
+        Arrays.sort(arr_copia);
+        for(int z = 1; z < arr_copia.length; z++)
         {
-           for (int a = c + 1; a < arr.length; a++)
+            if(arr_copia[z - 1] != arr_copia[z])
             {
-                if (arr[a] == arr[c])
-                {
-                    se_repite = true;
-                }
+                num_sin_repetir_contador++;
             }
         }
-        int[][] num_veces_repetido = new int[2][no_duplicado_contador]; //Array doble para poner los numeros(fila 0)
-        // y las veces que estan reptidos(fila 1)
+
+        // ELIMINAR comprobaciones System.out.println(Arrays.toString(arr_copia) + num_sin_repetir_contador);
+
+        int[][] num_veces_repetido = new int[2][num_sin_repetir_contador]; //Array doble para poner
+        // los numeros(fila 0)// y las veces que estan reptidos(fila 1)
 
         while(i < arr.length)
         {
@@ -178,10 +182,11 @@ public class Arrays_obligatorios {
             }
             if(!se_repite)
             {
-                num_veces_repetido[0][i] = posicion;
-                num_veces_repetido[1][i] = contador_num;
-            }
+                    num_veces_repetido[0][recorrer_array_nivel_2_contador] = posicion;
+                    num_veces_repetido[1][recorrer_array_nivel_2_contador] = contador_num;
 
+                    recorrer_array_nivel_2_contador++;
+            }
 
             se_repite = false;
             contador_num = 1;
@@ -203,7 +208,31 @@ public class Arrays_obligatorios {
         k += 2;
         }**/
     }
+        //recorre y compara un numero en la posicion de un array con todo el resto
+        // de numeros del mismo array para escribirlos la cantidad de veces dicha
+        // en la fila 1 del array en el array definitivo.
+        for(int z = 0; z < arr.length; z++)
+        {
+            for (int x = 0; x < num_veces_repetido[0].length; x++)
+            {
+                //En caso de que el numero de un array sea igual a otro numero del mismo array
+                // que siga en la siguiente posición y si no hay mas posiciones que salga del array.
+                if(num_veces_repetido[z] == num_veces_repetido[x])
+                {
+                    x = x + 1;
+
+                    if(x == num_veces_repetido[0].length)
+                    {
+                        break;
+                    }
+                }
+                arraydefinitivo[contador2] = //AQUI TAMOSSSSS
+                contador2++;
+            }
+        }
+        System.out.println(Arrays.deepToString(num_veces_repetido));
 }
 }
+
 /**        Arrays.sort(arr);
  *         System.out.println(Arrays.toString(arr));**/
