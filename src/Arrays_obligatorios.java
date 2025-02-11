@@ -4,9 +4,9 @@ public class Arrays_obligatorios
 
     public static void main(String[] args)
     {
-        // ejercicio1();
-        // ejercicio2();
-        ejercicio3();
+         ejercicio1();
+         ejercicio2();
+         ejercicio3();
     }
 
     public static void ejercicio1()
@@ -130,10 +130,9 @@ public class Arrays_obligatorios
         int reseteo_i; //resetea la variable i
         int num_sin_repetir_contador = 1; //cuantos numeros hay en total sin contar las repeticiones
         int contador_num = 1; // cuantas veces se repite un numero
-        int contador2 = 0;
         int recorrer_array_nivel_2_contador = 0; // contador para recorrer el array de nivel dos
         boolean se_repite = false; //para saber si un numero en el array ya lo hemos guardo o no.
-        int [] arraydefinitivo = new int[arr.length]; //Array que se va a imprimir al final
+        int [] arrayDefinitivo = new int[arr.length]; //Array que se va a imprimir al final
 
         // Comprueba cuantos numeros hay sin contar las repeticiones
         Arrays.sort(arr_copia);
@@ -212,18 +211,20 @@ public class Arrays_obligatorios
 
             /*escribe los numeros el numero de veces que hay
              que escribirlos segun su frecuencia en el array definitivo*/
-            for(int z = 0; z < arraydefinitivo.length; z++)
+            int z = 0;
+            while(contador < arrayDefinitivo.length)
             {
                 int frecuencia = num_veces_repetido[1][z];
 
                 for (int x = 0; x < frecuencia; x++)
                 {
-                    arraydefinitivo[contador] = num_veces_repetido[0][z];
+                    arrayDefinitivo[contador] = num_veces_repetido[0][z];
                     contador++;
                     copiarContador = contador;
                 }
                 contador = copiarContador;
+                z++;
             }
-        System.out.println(Arrays.toString(arraydefinitivo));
+        System.out.println(Arrays.toString(arrayDefinitivo));
     }
 }
