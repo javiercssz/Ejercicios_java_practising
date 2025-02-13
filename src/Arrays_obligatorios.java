@@ -86,29 +86,48 @@ public class Arrays_obligatorios
         {{1,2,3},
         {4,0,6},
         {7,8,9}};
-        boolean fuera = false;
+        //cuenta cuantos 0 hay para hacer la longitud del array copiado
+        int contador = 0;
+        for(int i = 0; i < array0[0].length; i++)
+        {
+            for (int j = 0; j < array0.length; j++)
+            {
+                if(array0[i][j] == 0)
+                {
+                    contador++;
+                }
+            }
+        }
+        //posiciones x & y donde estan los 0
+        int [][] posiciones0 = new int[2][contador];
 
+        int posicion = 0;
         for (int i = 0; i < array0.length; i++)
         {
             for (int j = 0; j < array0[i].length; j++)
             {
                 if(array0[i][j] == 0)
                 {
-                    for (int k = 0; k < array0.length; k++)
-                    {
-                        array0[k][j] = 0;
-                    }
-                    for(int z = 0; z < array0[i].length; z++)
-                    {
-                        array0[i][z] = 0;
-                        fuera = true;
-                    }
+                    posiciones0[0][posicion] = i;
+                    posiciones0[1][posicion] = j;
+                    
+                    posicion++;
                 }
-                if (fuera)
-                {break;}
+              
             }
-            if (fuera)
-            {break;}
+           
+        }
+        for(int i = 0; i < posiciones0[0].length; i++)
+        {
+             for(int x = 0; x < array0[0].length; x++)
+             {
+                 array0[posiciones0[0][i]][x] = 0;
+             }
+             for(int y = 0; y < array0.length; y++)
+             {
+                 array0[y][posiciones0[1][i]] = 0;
+             }
+
         }
         System.out.println(Arrays.deepToString(array0));
     }
