@@ -208,7 +208,6 @@ public class Arrays_obligatorios
             }
             int contador = 0;
             int copiarContador = 0;
-
             /*escribe los numeros el numero de veces que hay
              que escribirlos segun su frecuencia en el array definitivo*/
             int z = 0;
@@ -222,7 +221,6 @@ public class Arrays_obligatorios
                     contador++;
                     copiarContador = contador;
                 }
-                contador = copiarContador;
                 z++;
             }
         System.out.println(Arrays.toString(arrayDefinitivo));
