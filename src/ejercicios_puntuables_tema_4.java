@@ -75,6 +75,7 @@ public class ejercicios_puntuables_tema_4 {
         return (numero2 % 10) + devolverdigitos(numero2 / 10);
     }
 }
+
 /**
 
  Ejercicio 3
