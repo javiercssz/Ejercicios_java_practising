@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class cadenasDeTextoClase2 {
     public static void main(String[] args){
-        //ejercicio1();
-        //ejercicio2();
-        //ejercicio3();
-       // ejercicio4();
-        //ejercicio5();
+        ejercicio1();
+        ejercicio2();
+        ejercicio3();
+        ejercicio4();
+        ejercicio5();
         ejercicio6();
     }
    /*Ejercicio 1: Reemplazo de Palabras
@@ -148,7 +148,7 @@ no lo fuese. Por esto, supondremos que el usuario introduce la frase sin tildes.
 
         System.out.println(palindromo);
         }
-            /*Ejercicio 6
+    /*Ejercicio 6
 Un anagrama es una palabra que resulta del cambio del orden de los caracteres de otra.
 Ejemplos de anagramas para la palabra roma son: amor, ramo o mora. Construir un progra­
 ma que solicite al usuario dos palabras e indique si son anagramas una de otra.*/
@@ -160,12 +160,15 @@ ma que solicite al usuario dos palabras e indique si son anagramas una de otra.*
         char[] silaba1 = palabra1.toCharArray();
         char[] silaba2 = palabra2.toCharArray();
 
-        for(int i = 0; i < silaba1.length; i++)
+        Arrays.sort(silaba1);
+        Arrays.sort(silaba2);
+        if(Arrays.equals(silaba1,silaba2))
         {
-            for(int j = 0; j < silaba2.length; j++)
-            {
-
-            }
+            System.out.println("Si es un anagrama");
+        }
+        else
+        {
+            System.out.println("No es un anagrama");
         }
     }
 }
