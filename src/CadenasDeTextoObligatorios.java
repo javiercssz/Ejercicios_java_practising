@@ -1,0 +1,115 @@
+import java.util.Scanner;
+import java.util.jar.JarOutputStream;
+
+public class CadenasDeTextoObligatorios {
+    public static void main(String[] args) {
+        ejercicio1();
+        ejercicio2();
+        ejercicio3();
+    }
+    /*Ejercicio 1: Transformar una oración en "lenguaje hacker"
+Descripción:
+Dada una oración, conviértela en "lenguaje hacker", reemplazando ciertas letras con símbolos.
+
+Reglas de conversión:
+A → 4, B → 8, C → (, D → |), E → 3, G → 6, I → 1, L → |_, O → 0, S → $, T → 7, Z → 2
+
+Ejemplo de Entrada:
+Ingrese una oración: "Java es genial"
+
+Ejemplo de Salida:
+Texto en lenguaje hacker: "J4v4 3$ 6en14|_"*/
+    public static void ejercicio1(){
+
+        System.out.println("Escribe una frase");
+
+        Scanner sc = new Scanner(System.in);
+        String frase = sc.nextLine();
+
+
+        String fraseTraducida = frase.replaceAll("a", "4")
+                .replaceAll("A","4")
+                .replaceAll("b", "8")
+                .replaceAll("B","8")
+                .replaceAll("c","(")
+                .replaceAll("C","(")
+                .replaceAll("D","|)")
+                .replaceAll("e","3")
+                .replaceAll("E","3")
+                .replaceAll("g","6")
+                .replaceAll("G","6")
+                .replaceAll("i","1")
+                .replaceAll("I","1")
+                .replaceAll("l","|_")
+                .replaceAll("L","|_")
+                .replaceAll("o","0")
+                .replaceAll("O","0")
+                .replaceAll("s","$")
+                .replaceAll("S","$")
+                .replaceAll("t","7")
+                .replaceAll("T","7")
+                .replaceAll("z","2")
+                .replaceAll("Z","2");
+
+        System.out.println(fraseTraducida);
+    }
+    /*
+Ejercicio 2: Validar una contraseña según criterios de seguridad
+
+Descripción:
+Dada una contraseña, verifica si cumple los siguientes criterios:
+Longitud mínima de 8 caracteres.
+Contiene al menos una mayúscula.
+Contiene al menos una minúscula.
+Contiene al menos un número.
+Contiene al menos un carácter especial (@, #, $, %, &, *, !).
+
+Ejemplo de Entrada:
+Ingrese una contraseña: "P@ssw0rd!"
+
+Ejemplo de Salida:
+La contraseña es segura.*/
+    public static void ejercicio2(){
+        Scanner sc = new Scanner(System.in);
+    }
+    /*
+Ejercicio 3: Comprimir una cadena
+
+Descripción:
+Dada una cadena que contiene caracteres repetidos consecutivamente, comprímela usando el formato "carácter" + "número de repeticiones".
+
+Ejemplo de Entrada:
+Ingrese una cadena: "aaabbbbccddddd"
+
+Ejemplo de Salida:
+Cadena comprimida: "a3b4c2d5"*/
+    public static void ejercicio3(){
+        Scanner sc = new Scanner(System.in);
+    }
+}
+
+/*       char[] fraseArray = frase.toCharArray();
+
+ for(int i = 0; i < fraseArray.length; i++)
+        {
+            if(fraseArray[i] == "a" || fraseArray[i] == "A")
+            {
+                fraseArray[i] = "4";
+            }
+            if(fraseArray[i] == "b" || fraseArray[i] == "B")
+            {
+                fraseArray[i] = "8";
+            }
+            if(fraseArray[i] == "c" || fraseArray[i] == "C")
+            {
+                fraseArray[i] = "(";
+            }
+            if(fraseArray[i] == "e" || fraseArray[i] == "E")
+            {
+                fraseArray[i] = "3";
+            }
+            if (fraseArray[i] == "g" || fraseArray[i] == "G")
+            {
+                fraseArray[i] = "6";
+            }
+            if(replaceall)*/
