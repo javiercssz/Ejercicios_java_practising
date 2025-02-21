@@ -1,10 +1,11 @@
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.jar.JarOutputStream;
+import java.util.regex.*;
 
 public class CadenasDeTextoObligatorios {
     public static void main(String[] args) {
-        ejercicio1();
-        ejercicio2();
+        //ejercicio1();
+        //ejercicio2();
         ejercicio3();
     }
     /*Ejercicio 1: Transformar una oración en "lenguaje hacker"
@@ -71,6 +72,20 @@ Ejemplo de Salida:
 La contraseña es segura.*/
     public static void ejercicio2(){
         Scanner sc = new Scanner(System.in);
+        String contraseña = sc.next();
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).+$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(contraseña);
+
+        if(matcher.find())
+        {
+            System.out.println("La contraseña es segura");
+        }
+        else
+        {
+            System.out.println("La contraseña no es segura");
+        }
     }
     /*
 Ejercicio 3: Comprimir una cadena
@@ -84,32 +99,51 @@ Ingrese una cadena: "aaabbbbccddddd"
 Ejemplo de Salida:
 Cadena comprimida: "a3b4c2d5"*/
     public static void ejercicio3(){
+        System.out.println("compresor de caracteres repetidos consecutivamente");
+
         Scanner sc = new Scanner(System.in);
+        String palabra = sc.nextLine();
+        char[] palabraArray = palabra.toCharArray();
+
+        //Contador de caracteres a comprimir
+        int contador = 1;
+        for(int i = 1; i < palabraArray.length; i++)
+        {
+            if(palabraArray[i] != palabraArray[i - 1])
+            {
+                contador++;
+            }
+        }
+
+        String compresor[][] = new String[2][contador];
+
+        contador = 1;
+        int posicion = 0;
+        for(int i = 1; i < palabraArray.length ; i++)
+        {
+            if(palabraArray[i] != palabraArray[i - 1])
+            {
+                compresor[0][posicion] = String.valueOf(palabraArray[i - 1]);
+                compresor[1][posicion] = String.valueOf(contador);
+                contador = 1;
+                posicion++;
+            } else if (i == palabraArray.length - 1)
+            {
+                compresor[0][posicion] = String.valueOf(palabraArray[i - 1]);
+                compresor[1][posicion] = String.valueOf(contador);
+            }
+            contador++;
+        }
+
+        String[] comprimido = new String[compresor[0].length * compresor.length];
+        for(int i = 0; i < compresor[0].length; i+=2)
+        {
+            comprimido[i] = compresor[0][i];
+            comprimido[i + 1] = compresor[1][i];
+        }
+
+        String compreso = Arrays.toString(comprimido);
+        System.out.println(compreso);
+
     }
 }
-
-/*       char[] fraseArray = frase.toCharArray();
-
- for(int i = 0; i < fraseArray.length; i++)
-        {
-            if(fraseArray[i] == "a" || fraseArray[i] == "A")
-            {
-                fraseArray[i] = "4";
-            }
-            if(fraseArray[i] == "b" || fraseArray[i] == "B")
-            {
-                fraseArray[i] = "8";
-            }
-            if(fraseArray[i] == "c" || fraseArray[i] == "C")
-            {
-                fraseArray[i] = "(";
-            }
-            if(fraseArray[i] == "e" || fraseArray[i] == "E")
-            {
-                fraseArray[i] = "3";
-            }
-            if (fraseArray[i] == "g" || fraseArray[i] == "G")
-            {
-                fraseArray[i] = "6";
-            }
-            if(replaceall)*/
