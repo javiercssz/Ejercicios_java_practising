@@ -4,8 +4,8 @@ import java.util.regex.*;
 
 public class CadenasDeTextoObligatorios {
     public static void main(String[] args) {
-        //ejercicio1();
-        //ejercicio2();
+        ejercicio1();
+        ejercicio2();
         ejercicio3();
     }
     /*Ejercicio 1: Transformar una oración en "lenguaje hacker"
@@ -121,28 +121,31 @@ Cadena comprimida: "a3b4c2d5"*/
         int posicion = 0;
         for(int i = 1; i < palabraArray.length ; i++)
         {
-            if(palabraArray[i] != palabraArray[i - 1])
+            if(palabraArray[i] != palabraArray[i - 1] || i == palabraArray.length - 1)
             {
+                if(i == palabraArray.length - 1)
+                {
+                    contador +=1;
+                }
                 compresor[0][posicion] = String.valueOf(palabraArray[i - 1]);
                 compresor[1][posicion] = String.valueOf(contador);
-                contador = 1;
+                contador = 0;
                 posicion++;
-            } else if (i == palabraArray.length - 1)
-            {
-                compresor[0][posicion] = String.valueOf(palabraArray[i - 1]);
-                compresor[1][posicion] = String.valueOf(contador);
             }
             contador++;
         }
 
         String[] comprimido = new String[compresor[0].length * compresor.length];
-        for(int i = 0; i < compresor[0].length; i+=2)
+
+        posicion = 0;
+        for(int i = 0; i < compresor[0].length; i++)
         {
-            comprimido[i] = compresor[0][i];
-            comprimido[i + 1] = compresor[1][i];
+            comprimido[posicion] = compresor[0][i];
+            comprimido[posicion + 1] = compresor[1][i];
+            posicion+=2;
         }
 
-        String compreso = Arrays.toString(comprimido);
+        String compreso = String.join("",comprimido);
         System.out.println(compreso);
 
     }
