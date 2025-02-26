@@ -95,10 +95,32 @@ Utiliza grupos en la expresión regular para capturar el año, mes y día.
 Emplea los métodos appendReplacement() y appendTail() del objeto Matcher para construir el nuevo texto con las fechas convertidas.
 Muestra en consola el texto original y el resultado tras la transformación.
 */
+    //Lo he hecho de dos maneras.
     public static void ejercicio3(){
 
+        System.out.println("Introduzca dos fechas en este formato YYYY-MM-DD");
+
+        Scanner sc = new Scanner(System.in);
+        String fecha = sc.nextLine();
+        String fecha2 = sc.nextLine();
+
+        String resultado = fecha.replaceAll("(\\d{4})-(\\d{2})-(\\d{2})", "$3/$2/$1");
+
+        Pattern pattern = Pattern.compile("(\\d{4})-(\\d{2})-(\\d{2})");
+        Matcher matcher = pattern.matcher(fecha2);
+        StringBuffer resultado2 = new StringBuffer();
+
+        while(matcher.find())
+        {
+            matcher.appendReplacement(resultado2,matcher.group(3) + "/" + matcher.group(2) + "/" + matcher.group(1));
+        }
+        matcher.appendTail(resultado2);
+
+        System.out.println(resultado);
+        System.out.println(resultado2.toString());
     }
     /*
+
 Ejercicio 4: Validación y Extracción de URLs
 Enunciado:
 Desarrolla un programa en Java que solicite al usuario una dirección URL y verifique si es válida utilizando expresiones regulares. La URL deberá cumplir con los siguientes criterios:
@@ -114,6 +136,22 @@ Si la URL no cumple con el formato esperado, se debe mostrar un mensaje indicand
 */
     public static void ejercicio4(){
 
+        while(true) {
+            System.out.println("Escribe una url");
+
+            Scanner sc = new Scanner(System.in);
+            String url = sc.nextLine();
+
+            Pattern pattern = Pattern.compile("^(https?://)([a-z]{2,}\\.)?\\w*\\.[a-z]{2,3}(/.*)?$");
+            Matcher matcher = pattern.matcher(url);
+
+            if (matcher.find()) {
+                System.out.println("url valida");
+                break;
+            } else {
+                System.out.println("url invalida");
+            }
+        }
     }
 }
 
