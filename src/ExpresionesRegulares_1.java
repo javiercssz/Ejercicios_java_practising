@@ -4,8 +4,8 @@ import java.util.regex.Pattern;
 
 public class ExpresionesRegulares_1 {
     public static void main(String[] args){
-        //ejercicio1();
-        //ejercicio2();
+        ejercicio1();
+        ejercicio2();
         ejercicio3();
         ejercicio4();
     }
