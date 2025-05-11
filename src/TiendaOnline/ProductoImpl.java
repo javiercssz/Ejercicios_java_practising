@@ -1,5 +1,8 @@
 package TiendaOnline;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+
 public  class ProductoImpl implements Producto,Comparable<ProductoImpl>{
     private String nombre;
     private double precio;
@@ -62,49 +65,75 @@ public  class ProductoImpl implements Producto,Comparable<ProductoImpl>{
     @Override
     public boolean aplicarDescuento(double porcentaje) {
 
-        if(porcentaje > 100 && porcentaje < 1)
-        {
+        if (porcentaje > 100 && porcentaje < 1) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
 
     @Override
     public double obtenerPrecioConIVA(double porcentajeIVA) {
-        if(porcentajeIVA > 0 && porcentajeIVA <= 100) {
+        if (porcentajeIVA > 0 && porcentajeIVA <= 100) {
             return precio * porcentajeIVA / 100;
-        }else {
+        } else {
             return 0;
         }
     }
 
     @Override
     public String obtenerResumen() {
-        return "el " + " es muy buen producto";
+        return nombre +  " es muy buen producto";
     }
 
     @Override
     public boolean esProductoPopular() {
-        if (ventas > umbralVentas)
-        {
+        if (ventas > umbralVentas) {
             return true;
-        }else
-        {
+        } else {
             return false;
         }
     }
 
     @Override
     public int compareTo(ProductoImpl o) {
-        int cmp = Double.compare(this.precio,precio);
+        int cmp = Double.compare(this.precio, o.precio);
 
         if (cmp != 0) return cmp;
-        return this.nombre.compareTo(nombre);
+        return this.nombre.compareTo(o.nombre);
 
 
     }
 
+    Comparator<ProductoImpl> comparatorNombre = new Comparator<ProductoImpl>() {
+        @Override
+        public int compare(ProductoImpl o1, ProductoImpl o2) {
+            return o1.getNombre().compareTo(o2.getNombre());
+        }
+    };
 
+    Comparator<ProductoImpl> comparatorPrecio = new Comparator<ProductoImpl>() {
+        @Override
+        public int compare(ProductoImpl o1, ProductoImpl o2) {
+            return Double.compare(o1.getPrecio(), o2.getPrecio());
+        }
+    };
+
+    Comparator<ProductoImpl> comparatorFecha = new Comparator<ProductoImpl>() {
+        @Override
+        public int compare(ProductoImpl o1, ProductoImpl o2) {
+            return Integer.compare(o1.anioLanzamiento, o2.anioLanzamiento);
+        }
+    };
+
+    @Override
+    public String toString() {
+        return "ProductoImpl{" +
+                "umbralVentas=" + umbralVentas +
+                ", ventas=" + ventas +
+                ", anioLanzamiento=" + anioLanzamiento +
+                ", precio=" + precio +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }
