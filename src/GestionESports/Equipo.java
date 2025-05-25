@@ -5,10 +5,19 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class Equipo implements Iterator{
+public class Equipo{
     private String nombreEquipo;
     private HashSet<Jugador> jugadores = new HashSet<>();
     private HashMap<Torneo,EstadisticaEquipo> EstadisticaEquipos = new HashMap<Torneo, EstadisticaEquipo>();
+
+    public Equipo() {
+    }
+
+    public Equipo(HashMap<Torneo, EstadisticaEquipo> estadisticaEquipos, HashSet<Jugador> jugadores, String nombreEquipo) {
+        EstadisticaEquipos = estadisticaEquipos;
+        this.jugadores = jugadores;
+        this.nombreEquipo = nombreEquipo;
+    }
 
     public String getNombreEquipo() {
         return nombreEquipo;
@@ -63,7 +72,7 @@ public class Equipo implements Iterator{
     public void agregarEstadistica(Torneo torneo, EstadisticaEquipo est){
         EstadisticaEquipos.put(torneo,EstadisticaEquipos);
     }
-    public EstadisticaEquipo  stat getEstadistica(Torneo torneo){
+    public EstadisticaEquipo  getEstadistica(Torneo torneo){
         return EstadisticaEquipos.get(torneo); //creo que me da error porque la clase torneo no esta creada
     }
     public int getTamanio(){
@@ -79,7 +88,7 @@ public class Equipo implements Iterator{
         }
         return tamanio;
     }
-    public boolean tieneJugadoor(Jugador jugador){
+    public boolean tieneJugador(Jugador jugador){
         if(jugadores.contains(jugador)){
             return true;
         }

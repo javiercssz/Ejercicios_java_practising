@@ -83,6 +83,6 @@ public class Jugador {
     }
 
     public <Torneo, EstadisticaJugador> EstadisticaJugador estadisticaJugadorGetEstadisticaTorneo(Torneo torneo) {
-        return getEstadisticasJugador.get(torneo); //Tengo que crear este getter cuando pueda hacer lo del hashmap
+        return (EstadisticaJugador) getEstadisticasJugador().get(torneo); //Tengo que crear este getter cuando pueda hacer lo del hashmap
     }
 }
