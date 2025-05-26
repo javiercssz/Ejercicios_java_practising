@@ -19,6 +19,30 @@ public class Torneo {
 
     }
 
+    public HashSet<Equipo> getEquiposParticipantes() {
+        return equiposParticipantes;
+    }
+
+    public void setEquiposParticipantes(HashSet<Equipo> equiposParticipantes) {
+        this.equiposParticipantes = equiposParticipantes;
+    }
+
+    public String getNombreTorneo() {
+        return nombreTorneo;
+    }
+
+    public void setNombreTorneo(String nombreTorneo) {
+        this.nombreTorneo = nombreTorneo;
+    }
+
+    public TreeMap<Equipo, Integer> getResultados() {
+        return resultados;
+    }
+
+    public void setResultados(TreeMap<Equipo, Integer> resultados) {
+        this.resultados = resultados;
+    }
+
     public void aniadirEquipo(Equipo equipo)
     {
         if(!equiposParticipantes.contains(equipo)){

@@ -52,7 +52,6 @@ public class Jugador {
         this.estadisticasJugador = estadisticasJugador;
     }
 
-
     public String getNickname() {
         return nickname;
     }
@@ -78,8 +77,8 @@ public class Jugador {
         setRol(rol);
     }
 
-    public void agregarEstadistica(Torneo torneo, EstadisticaJugador estadisticas) { //NO se si va
-        setEstadisticasJugador(torneo, estadisticas);
+    public void agregarEstadistica(Torneo torneo, EstadisticaJugador estadisticas) {
+        estadisticasJugador.put(torneo,estadisticas);
     }
 
     public <Torneo, EstadisticaJugador> EstadisticaJugador estadisticaJugadorGetEstadisticaTorneo(Torneo torneo) {

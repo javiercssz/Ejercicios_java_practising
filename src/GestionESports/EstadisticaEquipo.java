@@ -42,4 +42,10 @@ public class EstadisticaEquipo {
     public void calcularPorcentajeDerrota(){
         System.out.println((partidasPerdidas / (partidasGanadas + partidasPerdidas) * 100 + " % de partidas perdidas."));
     }
+    public void sumarEstadisticas(EstadisticaEquipo otra) {
+        this.partidasGanadas += otra.partidasGanadas;
+        this.partidasPerdidas += otra.partidasPerdidas;
+        this.puntos += otra.puntos;
+    }
+
 }

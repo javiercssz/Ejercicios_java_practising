@@ -70,7 +70,7 @@ public class Equipo{
         }
     }
     public void agregarEstadistica(Torneo torneo, EstadisticaEquipo est){
-        EstadisticaEquipos.put(torneo,EstadisticaEquipos);
+        EstadisticaEquipos.put(torneo,est);
     }
     public EstadisticaEquipo  getEstadistica(Torneo torneo){
         return EstadisticaEquipos.get(torneo); //creo que me da error porque la clase torneo no esta creada
