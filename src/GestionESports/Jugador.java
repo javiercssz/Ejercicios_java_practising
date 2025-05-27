@@ -1,7 +1,4 @@
 package GestionESports;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -12,6 +9,10 @@ public class Jugador {
     private int edad;
     private String rol;
     private HashMap<Torneo, EstadisticaJugador> estadisticasJugador = new HashMap<>();
+
+
+    public Jugador() {
+    }
 
     public Jugador(String nickname, String nombreReal, int edad, String rol) {
         this.nickname = nickname;

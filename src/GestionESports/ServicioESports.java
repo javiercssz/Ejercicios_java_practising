@@ -1,16 +1,13 @@
 package GestionESports;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class ServicioESports {
     private HashMap<String,Equipo> equipos = new HashMap<>();
     private HashMap<String,Torneo> torneos = new HashMap<>();
     private HashMap<Jugador,Equipo> jugadoresYEquipos = new HashMap<>();
 
-    public ServicioESports(HashMap<String, Equipo> equipos, HashMap<Jugador, Equipo> jugadoresYEquipos, String nuevoNombreEquipo, HashMap<String, Torneo> torneos) {
+    public ServicioESports(HashMap<String, Equipo> equipos, HashMap<Jugador, Equipo> jugadoresYEquipos, HashMap<String, Torneo> torneos) {
         this.equipos = equipos;
         this.jugadoresYEquipos = jugadoresYEquipos;
         this.torneos = torneos;
@@ -42,24 +39,26 @@ public class ServicioESports {
     public void intercambiarJugadores(Equipo equipo1, Jugador jugador1, Equipo equipo2, Jugador jugador2){
         if (equipo1.tieneJugador(jugador1) && equipo2.tieneJugador(jugador2)){
 
+
             equipo1.eliminarJugadores(jugador1);
             equipo2.agregarJugadores(jugador1);
 
+
             equipo2.eliminarJugadores(jugador2);
-            equipo2.agregarJugadores(jugador1);
+            equipo1.agregarJugadores(jugador2);
 
         }
     }
-    public void fusionarEquipos(String nombre1, String nombre2, String nuevoNombre) {
+    public Equipo fusionarEquipos(String nombre1, String nombre2, String nuevoNombre) {
         Equipo e1 = equipos.get(nombre1);
         Equipo e2 = equipos.get(nombre2);
 
         if (e1 == null || e2 == null) {
             System.out.println("Uno o ambos equipos no existen, no se puede fusionar.");
-            return;
+            return null;
         }
 
-        // Combinar jugadores (HashSet automáticamente evita duplicados)
+        // Combinar jugadores
         HashSet<Jugador> jugadoresCombinados = new HashSet<>(e1.getJugadores());
         jugadoresCombinados.addAll(e2.getJugadores());
 
@@ -67,25 +66,27 @@ public class ServicioESports {
         HashMap<Torneo, EstadisticaEquipo> estadisticasCombinadas = new HashMap<>(e1.getEstadisticaEquipos());
         e2.getEstadisticaEquipos().forEach((torneo, est2) -> {
             estadisticasCombinadas.merge(torneo, est2, (est1, estNueva) -> {
-
                 est1.sumarEstadisticas(estNueva);
                 return est1;
             });
         });
 
+        // Crear el nuevo equipo fusionado
         Equipo nuevoEquipo = new Equipo(estadisticasCombinadas, jugadoresCombinados, nuevoNombre);
 
-        // Actualizar mapas
+        // Actualizar el mapa de equipos
         equipos.remove(nombre1);
         equipos.remove(nombre2);
         equipos.put(nuevoNombre, nuevoEquipo);
 
-        // Actualizar asignación de jugadores
+        // Actualizar las asignaciones de jugadores
         for (Jugador jugador : jugadoresCombinados) {
             jugadoresYEquipos.put(jugador, nuevoEquipo);
         }
 
-        System.out.println("Equipos unidos en: " + nuevoNombre);
+        System.out.println("Equipos " + nombre1 + " y " + nombre2 + " fusionados en: " + nuevoNombre);
+
+        return nuevoEquipo;
     }
 
 
@@ -99,16 +100,17 @@ public class ServicioESports {
     public List<String> consultarTorneosDeJugador(Jugador jugador) {
         List<String> lista = new ArrayList<>();
         for (Torneo t : torneos.values()) {
-            if (t.listaJugadoresParticipantes().contains((CharSequence) jugador)) {
+            if (t.listaJugadoresParticipantes().contains(jugador)) {
                 lista.add(t.getNombreTorneo());
             }
+
         }
         return lista;
     }
 
-    public List<Jugador> filtrarJugadoresPorRolEnTorneo(String nombreTorneo, String rol) {
+    public Set<Jugador> filtrarJugadoresPorRolEnTorneo(String nombreTorneo, String rol) {
         Torneo torneo = torneos.get(nombreTorneo);
-        List<Jugador> resultado = new ArrayList<>();
+        Set<Jugador> resultado = new HashSet<>();
         if (torneo != null) {
             for (Equipo e : torneo.getEquiposParticipantes()) {
                 for (Jugador j : e.getJugadores()) {
@@ -120,5 +122,6 @@ public class ServicioESports {
         }
         return resultado;
     }
+
 
 }

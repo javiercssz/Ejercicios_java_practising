@@ -2,13 +2,9 @@ package GestionESports;
 
 import java.util.*;
 
-import java.util.Comparator;
-import java.util.TreeMap;
-
-
 public class Torneo {
     private String nombreTorneo;
-    private TreeMap<Equipo, Integer> resultados = new TreeMap<>();
+    private HashMap<Equipo, Integer> resultados = new HashMap<>();
     private HashSet<Equipo> equiposParticipantes = new HashSet<>();
 
     public Torneo(String nombreTorneo) {
@@ -17,6 +13,19 @@ public class Torneo {
     }
     public Torneo(){
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Torneo torneo = (Torneo) o;
+        return Objects.equals(nombreTorneo, torneo.nombreTorneo) && Objects.equals(resultados, torneo.resultados) && Objects.equals(equiposParticipantes, torneo.equiposParticipantes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombreTorneo, resultados, equiposParticipantes);
     }
 
     public HashSet<Equipo> getEquiposParticipantes() {
@@ -35,20 +44,21 @@ public class Torneo {
         this.nombreTorneo = nombreTorneo;
     }
 
-    public TreeMap<Equipo, Integer> getResultados() {
+    public HashMap<Equipo, Integer> getResultados() {
         return resultados;
     }
 
-    public void setResultados(TreeMap<Equipo, Integer> resultados) {
+    public void setResultados(HashMap<Equipo, Integer> resultados) {
         this.resultados = resultados;
     }
 
     public void aniadirEquipo(Equipo equipo)
     {
-        if(!equiposParticipantes.contains(equipo)){
+        if(equiposParticipantes.contains(equipo)){
             System.out.println("este equipo ya participa en el torneo");
         }else {
             equiposParticipantes.add(equipo);
+            System.out.println(equipo.getNombreEquipo() + " añadido al torneo con exito");
         }
     }
     public void actualizarPuntosEquipo(Equipo equipo, int puntos)
@@ -56,7 +66,7 @@ public class Torneo {
         resultados.put(equipo,puntos);
     }
 
-    public String equipoGanador(){
+    public Equipo  equipoGanador(){
 
         Equipo ganador = null;
         int maxPuntos = Integer.MIN_VALUE;
@@ -71,7 +81,7 @@ public class Torneo {
                 ganador = equipo;
             }
         }
-        return "El equipo ganador del torneo es " + ganador + " con " + maxPuntos + " puntos.";
+        return ganador;
 
     }
     public void mostrarRankingEquiposPorPuntos() {
@@ -90,18 +100,12 @@ public class Torneo {
             System.out.println(entrada.getKey().getNombreEquipo() + " consiguio " + entrada.getValue() + " puntos");
         }
     }
-    public String listaJugadoresParticipantes() {
-        String resultado = "Jugadores participantes en el torneo " + nombreTorneo + ":\n";
-
+    public List<Jugador> listaJugadoresParticipantes() {
+        List<Jugador> jugadores = new ArrayList<>();
         for (Equipo equipo : equiposParticipantes) {
-            resultado += "Equipo " + equipo.getNombreEquipo() + ":\n";
-
-            for (Jugador jugador : equipo.getJugadores()) {
-                resultado += " [ " + jugador.getNickname()  + " ] " + " (" + jugador.getRol() + ")\n";
-            }
+            jugadores.addAll(equipo.getJugadores());
         }
-
-        return resultado;
+        return jugadores;
     }
 
 

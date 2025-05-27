@@ -35,13 +35,20 @@ public class EstadisticaEquipo {
         this.puntos = puntos;
     }
 
-    public void calcularPorcentajeVictoria(){
-        System.out.println((partidasGanadas / (partidasGanadas + partidasPerdidas)) * 100  + " % de partidas ganadas.");
+    public String calcularPorcentajeVictoria() {
+        int total = partidasGanadas + partidasPerdidas;
+
+        double porcentaje = ((double) partidasGanadas / total) * 100;
+        return porcentaje + " % de partidas ganadas";
     }
 
-    public void calcularPorcentajeDerrota(){
-        System.out.println((partidasPerdidas / (partidasGanadas + partidasPerdidas) * 100 + " % de partidas perdidas."));
+    public String calcularPorcentajeDerrota() {
+        int total = partidasGanadas + partidasPerdidas;
+
+        double porcentaje = ((double) partidasPerdidas / total) * 100;
+        return porcentaje + " % de partidas perdidas";
     }
+
     public void sumarEstadisticas(EstadisticaEquipo otra) {
         this.partidasGanadas += otra.partidasGanadas;
         this.partidasPerdidas += otra.partidasPerdidas;
