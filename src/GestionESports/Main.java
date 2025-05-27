@@ -59,8 +59,8 @@ import java.util.HashMap;
                 //Registrar equipos en torneos
                 torneo1.aniadirEquipo(equipo1);
                 torneo1.aniadirEquipo(equipo2);
-
                 torneo2.aniadirEquipo(equipo1);
+
 
                 // Intentar registrar equipo duplicado en torneo
                 System.out.println("\nintentando registrar equipo duplicado en torneo:");
@@ -123,7 +123,7 @@ import java.util.HashMap;
                 // Fusionar equipos
                 System.out.println("\nfusionando equipo, en g4");
                 Equipo EquipoNuevo = servicio.fusionarEquipos("g2", "heretics", "g4");
-                torneo1.aniadirEquipo(EquipoNuevo);
+
 
                 // Mostrar jugadores en el nuevo equipo
                 System.out.println("jugadores del equipo g4");
@@ -136,7 +136,7 @@ import java.util.HashMap;
                 System.out.println("\nEdad media de jugadores de g4: " + edadMedia);
 
                 // Consultar torneos en los que ha jugado un jugador
-                System.out.println("\nTorneos en los que ha jugado " + j7.getNickname() + ":"); //solo me falta esta funcion (CREO).
+                System.out.println("\nTorneos en los que ha jugado " + j5.getNickname() + ":");
                 for (String tNombre : servicio.consultarTorneosDeJugador(j1)) {
                     System.out.println(tNombre);
                 }
