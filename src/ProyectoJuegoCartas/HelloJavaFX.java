@@ -18,8 +18,8 @@ public class HelloJavaFX extends Application {
 
 
         primaryStage.setTitle("Mi primer JavaFX");
-        Image cartasIcono = new Image(getClass().getResourceAsStream("/icono.png")); //No encuentra la ubicación de la imagen
-                                                                                            // (esta en el packete resources)
+       Image cartasIcono = new Image(getClass().getResourceAsStream("/icono.png"));
+
         primaryStage.getIcons().add(cartasIcono);
         primaryStage.setScene(scene);
         primaryStage.show();
