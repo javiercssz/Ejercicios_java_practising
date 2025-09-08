@@ -12,8 +12,8 @@ public class Mazo {
         for(int i = 0; i < palo.length; i++){
             for(int j = 0; j < valor.length; j++){
 
-                Carta cartaAñadir = new Carta(palo[i],valor[j]);
-                cartas.add(cartaAñadir);
+                Carta cartaAniadir = new Carta(palo[i],valor[j]);
+                cartas.add(cartaAniadir);
             }
         }
     }

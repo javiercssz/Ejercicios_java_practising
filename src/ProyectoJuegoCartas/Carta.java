@@ -19,7 +19,7 @@ public class Carta {
             return 11;
         }
         else {
-            throw new IllegalArgumentException("valor de carta incorrecto " + valor);
+            throw new IllegalArgumentException("valor de carta incorrecto: " + valor);
         }
     }
 
